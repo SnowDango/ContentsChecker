@@ -16,7 +16,7 @@ fun main() {
         install(CallLogging)
         install(DefaultHeaders)
         routing {
-            get("/") {
+            get("/greating") {
                 call.respondHtml {
                     head {
                         title { +"Hello World" }
