@@ -1,11 +1,24 @@
 FROM openjdk:15-slim
 
 ENV APP_VER 0.0.1
-ENV APP_DIR ~/app
+ENV APP_ZIP ContentsChecker-$APP_VER.zip
+ENV APP_DIST ./source/build/distributions/$APP_ZIP
+ENV APP_DIR /app
 
+## main
 RUN mkdir $APP_DIR
-ADD ./source $APP_DIR
-ADD gradle.properties ~/.gradle/gradle.properties
-RUN cd $APP_DIR && ./gradlew distZip
-RUN apt-get update && apt-get install unzip && unzip ${APP_DIR}/build/distributions/ContentsChecker-${APP_VER}.zip
-ENTRYPOINT cd ${APP_DIR}/build/distributions/ContentsChecker-${APP_VER}/bin && ./ContentsChecker
+
+## 依存tool
+RUN \
+apt update && \
+apt -y upgrade && \
+apt install unzip
+
+## script
+ADD $APP_DIST $APP_DIR/$APP_ZIP
+
+## 解答
+RUN unzip $APP_DIR/$APP_ZIP
+
+## SERVER起動
+ENTRYPOINT cd ContentsChecker-$APP_VER/bin && ./ContentsChecker
