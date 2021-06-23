@@ -29,8 +29,8 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '15'
-        - name: Build with Gradle
-          run: cd source && ./gradlew distZip
+      - name: Build with Gradle
+        run: cd source && ./gradlew distZip
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
