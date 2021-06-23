@@ -12,7 +12,7 @@ import kotlinx.css.*
 import kotlinx.html.*
 
 fun main() {
-    val server = embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+    val server = embeddedServer(Netty, port = 80, host = "0.0.0.0") {
         install(CallLogging)
         install(DefaultHeaders)
         routing {
