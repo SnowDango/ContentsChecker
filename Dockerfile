@@ -13,7 +13,7 @@ apt -y upgrade && \
 apt install unzip
 
 ## script
-ADD $APP_SOURCE $APP_DIR/$APP_SOURCE
+ADD $APP_SOURCE $APP_DIR/
 
 ## SERVER起動
 ENTRYPOINT cd ./source/ && ./gradlew run
