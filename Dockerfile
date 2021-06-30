@@ -1,8 +1,6 @@
 FROM openjdk:15-slim
 
-ENV APP_VER 0.0.1
-ENV APP_ZIP ContentsChecker-$APP_VER.zip
-ENV APP_DIST ./source/build/distributions/$APP_ZIP
+ENV APP_SOURCE source/
 ENV APP_DIR /app
 
 ## main
@@ -15,10 +13,7 @@ apt -y upgrade && \
 apt install unzip
 
 ## script
-ADD $APP_DIST $APP_DIR/$APP_ZIP
-
-## 解答
-RUN unzip $APP_DIR/$APP_ZIP
+ADD $APP_SOURCE $APP_DIR/$APP_SOURCE
 
 ## SERVER起動
-ENTRYPOINT cd ContentsChecker-$APP_VER/bin && ./ContentsChecker
+ENTRYPOINT cd ./source/ && ./gradlew run
