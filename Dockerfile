@@ -15,5 +15,7 @@ apt install unzip
 ## script
 ADD $APP_SOURCE $APP_DIR/
 
+EXPOSE 80
+
 ## SERVER起動
 ENTRYPOINT cd ./source/ && ./gradlew run
